@@ -3,3 +3,39 @@ bun.lock
 .vscode/
 .angular/
 .dist/
+
+# Archivos y carpetas de Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Archivos de configuración de la solución
+*.sln
+*.csproj
+
+# Archivos de configuración de la base de datos local
+*.sqlite
+
+# Archivos de configuración de usuario
+*.json
+
+# Archivos de compilación
+bin/
+obj/
+
+# Archivos de paquetes NuGet
+*.nupkg
+*.snupkg
+packages/
+
+# Archivos de configuración de entorno
+.env
+.env.*
+
+# Archivos de logs
+*.log
+
+# Archivos de publicación
+publish/
