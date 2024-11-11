@@ -13,7 +13,6 @@ bun.lock
 
 # Archivos de configuración de la solución
 *.sln
-*.csproj
 
 # Archivos de configuración de la base de datos local
 *.sqlite
