@@ -12,7 +12,7 @@ bun.lock
 *.sln.docstates
 
 # Archivos de configuración de la solución
-*.sln
+#*.sln
 
 # Archivos de configuración de la base de datos local
 *.sqlite

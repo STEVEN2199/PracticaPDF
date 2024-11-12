@@ -1,35 +1,51 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PuntoDeVenta.Models;
-using PuntoDeVenta.Models.Administracion;
 
 namespace PuntoDeVenta.Data
 {
-    public class DataContext : DbContext
+    public class DataContext:DbContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
 
         }
 
+
         public DbSet<Productos> Productos { get; set; }
-
         public DbSet<Bodega> Bodegas { get; set; }
-
-        public DbSet<Cliente> Clientes { get; set; }
-
         public DbSet<Proveedores> Proveedores { get; set; }
+        public DbSet<Sede> Sedes { get; set; }
 
-        public DbSet<Sede> Sede { get; set; }
 
-        public DbSet<User> Users { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Productos>(entity =>
+            {
+                entity.Property(e => e.Nombre).HasMaxLength(255);
+                entity.Property(e => e.Descripcion).HasMaxLength(1000);
+            });
 
-        public DbSet<Permisos> Permisos { get; set; }
+            modelBuilder.Entity<Bodega>(entity =>
+            {
+                entity.Property(e => e.Nombre).HasMaxLength(255);
+                entity.Property(e => e.Direccion).HasMaxLength(500);
+                entity.Property(e => e.Telefono).HasMaxLength(20);
+            });
 
-        public DbSet<Roles> Roles { get; set; }
+            modelBuilder.Entity<Proveedores>(entity =>
+            {
+                entity.Property(e => e.Nombre).HasMaxLength(255);
+                entity.Property(e => e.Direccion).HasMaxLength(500);
+                entity.Property(e => e.Telefono).HasMaxLength(20);
+            });
 
-        public DbSet<UserRol> UsersRol { get; set; }
-
-        public DbSet<UserRolPermisos> UsersRolPermisos { get; set; }
-
+            modelBuilder.Entity<Sede>(entity =>
+            {
+                entity.Property(e => e.Nombre).HasMaxLength(255);
+                entity.Property(e => e.Direccion).HasMaxLength(500);
+                entity.Property(e => e.Telefono).HasMaxLength(20);
+            });
+        }
     }
+
 }

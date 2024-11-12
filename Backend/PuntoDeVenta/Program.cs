@@ -1,3 +1,4 @@
+using IBM.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PuntoDeVenta.Data;
 
@@ -7,7 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseDb2(builder.Configuration.GetConnectionString("DefaultConnection"), db2Options =>
+    {
+        // Configuraciones adicionales para DB2 si es necesario
+    });
 });
 
 builder.Services.AddControllers();
