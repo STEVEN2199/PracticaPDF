@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PuntoDeVenta.Models
 
@@ -7,6 +8,7 @@ namespace PuntoDeVenta.Models
     public class Bodega
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdBodega { get; set; }
 
         [MaxLength(255)]

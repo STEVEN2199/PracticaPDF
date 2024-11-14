@@ -16,6 +16,9 @@ namespace PuntoDeVenta.Data
         public DbSet<Proveedores> Proveedores { get; set; }
         public DbSet<Sede> Sedes { get; set; }
 
+        public DbSet<Permiso> Permisos { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,6 +33,7 @@ namespace PuntoDeVenta.Data
                 entity.Property(e => e.Nombre).HasMaxLength(255);
                 entity.Property(e => e.Direccion).HasMaxLength(500);
                 entity.Property(e => e.Telefono).HasMaxLength(20);
+                entity.Property(e => e.IdBodega).ValueGeneratedOnAdd();
             });
 
             modelBuilder.Entity<Proveedores>(entity =>

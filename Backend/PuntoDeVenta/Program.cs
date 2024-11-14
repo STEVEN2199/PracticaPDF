@@ -8,10 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
-    options.UseDb2(builder.Configuration.GetConnectionString("DefaultConnection"), db2Options =>
-    {
-        // Configuraciones adicionales para DB2 si es necesario
-    });
+    //options.UseDb2(builder.Configuration.GetConnectionString("DefaultConnection"), db2Options =>
+    //{
+    // Configuraciones adicionales para DB2 si es necesario
+    //});
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerConnection"));
 });
 
 builder.Services.AddControllers();
