@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using PuntoDeVenta.Data;
@@ -18,6 +19,7 @@ namespace PuntoDeVenta.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost("")]
         public async Task<ActionResult<int>> StoreBodega(BodegaDTO bodega)
         {

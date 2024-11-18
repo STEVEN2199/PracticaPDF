@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PuntoDeVenta.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace PuntoDeVenta.Data
 {
@@ -15,8 +16,11 @@ namespace PuntoDeVenta.Data
         public DbSet<Bodega> Bodegas { get; set; }
         public DbSet<Proveedores> Proveedores { get; set; }
         public DbSet<Sede> Sedes { get; set; }
-
         public DbSet<Permiso> Permisos { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRole {  get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
 
 
@@ -49,6 +53,24 @@ namespace PuntoDeVenta.Data
                 entity.Property(e => e.Direccion).HasMaxLength(500);
                 entity.Property(e => e.Telefono).HasMaxLength(20);
             });
+
+            modelBuilder.Entity<UserRole>().HasKey(ur => new { ur.UserId, ur.RoleId });
+
+            modelBuilder.Entity<UserRole>()
+            .HasOne(ur => ur.User)
+            .WithMany(u => u.UserRoles)
+            .HasForeignKey(ur => ur.UserId);
+
+            modelBuilder.Entity<UserRole>()
+                .HasOne(ur => ur.Role)
+                .WithMany(r => r.UserRoles)
+                .HasForeignKey(ur => ur.RoleId);
+
+            modelBuilder.Entity<RefreshToken>()
+                .HasIndex(rt => rt.Token)
+                .IsUnique();
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 
