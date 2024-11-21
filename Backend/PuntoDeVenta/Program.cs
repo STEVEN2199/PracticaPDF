@@ -36,6 +36,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 // Servicios
 builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<AuthService>();
+
 
 // Validaciones
 builder.Services.AddControllers().AddFluentValidation(fv =>
@@ -90,14 +92,21 @@ app.UseHttpsRedirection();
 app.UseCors("CorsPolicy");
 
 // Excluir rutas de autenticación (login, register y refresh-token) de la autenticación y autorización
-app.UseWhen(context =>
-    !context.Request.Path.StartsWithSegments("/api/Auth/login") &&
-    !context.Request.Path.StartsWithSegments("/api/Auth/register") &&
-    !context.Request.Path.StartsWithSegments("/api/Auth/refresh-token"), builder =>
-    {
-        builder.UseAuthentication();
-        builder.UseAuthorization();
-    });
+//app.UseWhen(context =>
+//    !context.Request.Path.StartsWithSegments("/api/Auth/login", StringComparison.OrdinalIgnoreCase) &&
+//    !context.Request.Path.StartsWithSegments("/api/Auth/register", StringComparison.OrdinalIgnoreCase) &&
+//    !context.Request.Path.StartsWithSegments("/api/Auth/refresh-token", StringComparison.OrdinalIgnoreCase), builder =>
+//    {
+//        builder.UseAuthentication();
+//        builder.UseAuthorization();
+//    });
+
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+// Middleware de permisos personalizado
+//app.UseMiddleware<PermissionMiddleware>();
 
 // Rutas de controladores
 app.MapControllers();
@@ -108,8 +117,5 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-// Middleware de permisos personalizado
-app.UseMiddleware<PermissionMiddleware>();
 
 app.Run();

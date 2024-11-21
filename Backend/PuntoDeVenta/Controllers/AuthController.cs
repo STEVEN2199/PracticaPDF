@@ -30,8 +30,9 @@ namespace PuntoDeVenta.Controllers
         public async Task<IActionResult> Login(LoginDto dto)
         {
             var tokens = await _authService.LoginAsync(dto);
+            Console.WriteLine(tokens.ToString());
             if (tokens.AccessToken == null) return Unauthorized("Invalid credentials.");
-            return Ok(tokens);
+            return Ok(new {tokens.RefreshToken, tokens.AccessToken});
         }
 
         //[AllowAnonymous]

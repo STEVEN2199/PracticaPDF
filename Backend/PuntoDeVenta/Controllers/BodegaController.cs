@@ -37,5 +37,12 @@ namespace PuntoDeVenta.Controllers
             int idBodega = (int)paramId.Value;
             return Ok(idBodega);
         }
+
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAllBodegas()
+        {
+            var bodegas = _context.Bodegas.ToListAsync();
+            return Ok(bodegas);
+        }
     }
 }

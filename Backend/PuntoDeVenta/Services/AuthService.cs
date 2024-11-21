@@ -25,7 +25,7 @@ namespace PuntoDeVenta.Services
                 Username = dto.Username,
                 Email = dto.Email,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
-                CreatedAt = DateTime.UtcNow
+                CreatedAt = DateTime.UtcNow 
             };
 
             _context.Users.Add(user);
