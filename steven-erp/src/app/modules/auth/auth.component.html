@@ -1,0 +1,25 @@
+<main class="flex justify-center items-center md:h-[95vh] md:px-10 lg:px-26">
+  <div
+    class="container h-[85vh] flex-col md:grid lg:max-w-none lg:grid-cols-2 lg:px-0"
+  >
+    <!-- Pantalla 1 -->
+    <div class="relative hidden h-full flex-col p-10 text-white lg:flex">
+      <div class="bg-auth absolute inset-0"></div>
+
+      <!-- Logo -->
+      <app-logo />
+
+      <div class="relative z-20 mt-auto">
+        <p class="text-lg">
+          &ldquo;Esta aplicacion mejora tu control de inventario. &ldquo;
+        </p>
+        <footer class="text-sm">Steven Encalada, El Duro de STS.</footer>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div>
+      <router-outlet />
+    </div>
+  </div>
+</main>
