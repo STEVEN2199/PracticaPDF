@@ -26,5 +26,6 @@ export class LoginComponent {
     }
 
     alert(this.loginForm.getRawValue());
+    
   }
 }
